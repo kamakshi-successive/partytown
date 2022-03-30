@@ -1,31 +1,23 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 import { Partytown } from '@builder.io/partytown/react';
 
 function App() {
+  const [counter, setCounter] = useState(0);
+   const increase = () => {
+    setCounter(count => count + 1);
+  };
+ 
   return (
-    <div className="App">
+    <div className="counter">
+      <h1>React Counter</h1>
+      <span className="counter__output">{counter}</span>
+      <div className="btn__container">
+        <button className="control__btn" onClick={increase}>+</button>
+      </div>
       <Partytown debug={true} forward={['dataLayer.push']} />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <script
-        type="text/partytown"
-        dangerouslySetInnerHTML={{
-          __html: '/* Inlined Third-Party Script */',
-        }}
-      />
+      <script type = "text/partytown">{increase}</script>
+      <script src = './public/~partytown/partytown.js'></script>
     </div>
   );
 }
